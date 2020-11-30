@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+
+#toast-container {
+  background-color: brown;
+  color: beige;
+  width: 300px;
+}

@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let gtr of guitars; let i = index">
+                <!-- {{gtr.brand.name}}: -->
+                {{gtr.name}}:
+                <!-- {{gtr.brand.country}} : -->
+                {{gtr.yearOfManufacture}}
+                <button [routerLink]="[i]" routerLinkActive="active" class="btn btn-primary"
+                    style="float:right; margin-left: 10px;"> Open
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="guitarForm" (ngSubmit)="onSubmit()">
+            <div class="row" style="margin-bottom: 40px;">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-success" style="margin-right: 20px;"
+                        [disabled]="!guitarForm.valid || !guitarForm.touched">Save</button>
+                    <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" formControlName="name">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="yearOfManufacture">Year of Manufacture</label>
+                        <input type="text" id="yearOfManufacture" class="form-control"
+                            formControlName="yearOfManufacture"> </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="serialNumber">Serial Number</label>
+                        <input type="text" id="serialNumber" class="form-control" formControlName="serialNumber">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="imagePath">Image URL</label>
+                        <input type="text" id="imagePath" class="form-control" formControlName="imagePath" #imagePath>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <select formControlName="guitarManufacturer">
+                        <option [ngValue]="null" disabled>Choose your manufacturer</option>
+                        <option *ngFor="let xxx of manufs" [ngValue]="xxx">
+                            {{ xxx.name }}
+                        </option>
+                    </select>
+
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12">
+                    <img [src]="imagePath.value" alt="" class="img-responsive">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

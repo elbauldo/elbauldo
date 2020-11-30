@@ -1,0 +1,9 @@
+<button (click)="updateGeetars()">update guitars</button>
+
+<h1>Banana Count now {{bananaCounter}}</h1>
+<h1>Guitars</h1>
+<ul>
+    <li *ngFor="let item of geetars">
+        {{item.name}} {{item.serialNumber}}
+    </li>
+</ul>

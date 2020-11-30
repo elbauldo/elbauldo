@@ -2,11 +2,17 @@
     <div class="container">
 
 
-        <a class="navbar-brand" routerLink="/" routerLinkActive="active">Interests</a>
+        <a class="navbar-brand" routerLink="/" routerLinkActive="active">Home</a>
+        <a class="navbar-brand" (click)="toastTime()">Show My Toastr</a>
+        <a class="navbar-brand" (click)="persist()">Save Guitars</a>
+        <div *ngIf="isLoading">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        <a class="navbar-brand" (click)="hydrate()">Fetch Guitars</a>
         <ul class="navbar-nav mr-auto">
-            <ng-container>
+            <ng-container *ngIf="authService.user$ | async">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="#" routerLinkActive="active">blah</a>
+                    <a class="nav-link" routerLink="/interests" routerLinkActive="active">Interests</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="#" routerLinkActive="active">blah</a>
@@ -17,12 +23,16 @@
             </ng-container>
         </ul>
 
+        <label *ngIf="authService.user$ | async as user" style="margin-right: 40px;">Welcome | {{ user.name }} |</label>
         <div class="dropdown" dropdown>
-            <a class="dropdown-toggle text-light" dropdownToggle>Welcome</a>
+            <a class="dropdown-toggle text-light" dropdownToggle>Login/Logout</a>
             <div class="dropdown-menu" *dropdownMenu>
-                <a class="dropdown-item">Edit Profile</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item">Logout</a>
+                <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
+                    <a class="dropdown-item" (click)="logout()">Logout</a>
+                </ng-container>
+                <ng-template #loggedOut>
+                    <a class="dropdown-item" (click)="login()">Login</a>
+                </ng-template>
             </div>
         </div>
     </div>
